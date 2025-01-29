@@ -1,10 +1,7 @@
 import { adminClient, emailOTPClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 const authClient = createAuthClient({
-  baseURL:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : `https://${process.env.VERCEL_URL}`,
+  baseURL: typeof window !== "undefined" ? window.location.origin : "",
   plugins: [adminClient(), emailOTPClient()],
 });
 
